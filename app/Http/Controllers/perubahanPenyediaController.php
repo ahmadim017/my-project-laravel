@@ -14,9 +14,10 @@ class perubahanPenyediaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $perubahanpenyedia = perubahanpenyedia::all();
+        $keyword = $request->get('keyword');
+        $perubahanpenyedia = perubahanpenyedia::where('namaperusahaan','LIKE',"%$keyword%")->paginate(10);
         return view('rubahpenyedia.index',['perubahanpenyedia' => $perubahanpenyedia]);
     }
 

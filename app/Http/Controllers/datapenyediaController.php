@@ -14,9 +14,10 @@ class datapenyediaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datapenyedia = datapenyedia::all();
+        $keyword = $request->Get('keyword');
+        $datapenyedia = datapenyedia::where('namaperusahaan','LIKE',"%$keyword%")->paginate(10);
         return view('datapenyedia.index',['datapenyedia' => $datapenyedia]);
     }
 

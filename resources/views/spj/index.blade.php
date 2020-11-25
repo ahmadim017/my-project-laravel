@@ -1,9 +1,17 @@
 @extends('layouts.sbadmin')
+@section('header')
+<link href="{{asset('public/sbadmin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+@endsection
 
+@section('footer')
+<script src="{{asset('public/sbadmin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('public/sbadmin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('public/sbadmin/js/demo/datatables-demo.js')}}"></script>
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-6">
-    <form action="#">
+    <form action="{{route('spj.index')}}">
     <div class="input-group mb-3">
     <input value="{{Request::get('keyword')}}" type="text" class="form-control col-md-10" name="keyword" placeholder="Cari Group Pokja">
       <div class="input-group-append">
@@ -41,8 +49,8 @@
       {{session('Status')}}
     </div>
     @endif
-    
-<table class="table table-striped">
+    <div class="table-responsive">
+<table class="table table-striped" id="dataTable">
     <thead>
       <tr>
         <th scope="col">No</th>
@@ -68,6 +76,7 @@
       @endforeach
     </tbody>
   </table>
+    </div>
 </div>
 </div>
 </div>

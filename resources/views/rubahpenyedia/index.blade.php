@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-6">
-    <form action="{{route('daftarpokja.index')}}">
+    <form action="{{route('rubahpenyedia.index')}}">
     <div class="input-group mb-3">
     <input value="{{Request::get('keyword')}}" type="text" class="form-control col-md-10" name="keyword" placeholder="Cari Nama Perusahaan">
       <div class="input-group-append">
@@ -41,7 +41,7 @@
       {{session('Status')}}
     </div>
     @endif
-    
+    <div class="table-responsive">
 <table class="table table-striped">
     <thead>
       <tr>
@@ -68,6 +68,9 @@
       @endforeach
     </tbody>
   </table>
+  
+    {{$perubahanpenyedia->links()}}
+    </div>
 </div>
 </div>
 </div>
