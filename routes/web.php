@@ -65,6 +65,8 @@ route::get('/pembuktian/{id}/download','pembuktianController@download')->name('p
 
 Route::get('/stugas/{id}/cetak_pdf','tugasController@cetak_pdf')->name('stugas.cetak_pdf');
 
+Route::get('/spj/{id}/cetak_pdf','spjController@cetak_pdf')->name('spj.cetak_pdf');
+
 Route::get('/hasillelang/json', 'hasillelangController@json')->name('hasillelang.json');
 
 Route::get('/hasillelang/{id}/cetak_pdf','hasillelangController@cetak_pdf')->name('hasillelang.cetak_pdf');

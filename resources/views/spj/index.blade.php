@@ -66,7 +66,7 @@
        @foreach ($spj as $s)
       <tr>
             <td>{{$loop->iteration}}</td>
-            <td><a href="#">{{$s->tugas->usulan->namapaket}}</a></td>
+            <td><a href="{{route('spj.show',[$s->id])}}">{{$s->tugas->usulan->namapaket}}</a></td>
             <td>{{$s->tugas->opd->opd}}</td>
             <td>{{$s->tugas->usulan->ta}}</td>
             <td>Rp.{{number_format($s->tugas->usulan->pagu)}}</td>
