@@ -19,7 +19,7 @@ class CreateDaftarpokja extends Migration
             $table->string('golongan');
             $table->string('nip');
             $table->enum('status',['ACTIVE','INACTIVE'])->nullable();
-            $table->enum('role',['POKJA','KEPALA UKPBJ'])->nullable();
+            $table->enum('role',['POKJA','KEPALA UKPBJ','PPTK'])->nullable();
             $table->timestamps();
         });
     }

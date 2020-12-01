@@ -91,8 +91,3 @@ Route::get('/laporanlpse/cetak/penyediabaru','laporanlpseController@export_penye
 
 Route::get('/laporanlpse/cetak/perubahanpenyedia','laporanlpseController@export_perubahanexcel')->name('laporanperubahan.cetak');
 
-Route::get('/Pokja/Daftarpaket','gruppokjaController@index')->name('pokjaview.daftarpaket');
-
-Route::get('/Pokja/Dashboard','gruppokjaController@dash')->name('pokjaview.dash');
-
-Route::get('/Pokja/Daftarpaket/{id}/detail','gruppokjaController@detail')->name('pokjaview.detail');

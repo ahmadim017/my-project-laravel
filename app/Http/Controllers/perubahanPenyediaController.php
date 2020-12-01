@@ -144,4 +144,8 @@ class perubahanPenyediaController extends Controller
         $perubahanpenyedia = perubahanpenyedia::findOrfail($id);
         return response()->download(storage_path('app/public/'. $perubahanpenyedia->file));
     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

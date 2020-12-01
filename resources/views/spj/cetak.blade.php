@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Tanda Terima Honorarium Pokja</title>
 <style type="text/css">
-<!--
+
 .style1 {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 }
 .style3 {font-family: Arial, Helvetica, sans-serif; font-size: 12px; }
 .style4 {font-size: 12px}
--->
+
 </style>
 </head>
 
@@ -50,56 +50,41 @@
     <td><span class="style3">{{$spj->hasil->nohasil}}</span></td>
   </tr>
 </table>
-<p>&nbsp;</p>
-<table width="100%" border="1" cellspacing="0" cellpadding="3">
+<br>
+<table width="100%" border="1" cellspacing="0" cellpadding="6">
   <tr>
     <td width="25"><div align="center" class="style3">No</div></td>
     <td width="125"><div align="center" class="style3">Nama</div></td>
     <td width="80"><div align="center" class="style3">Jabatan Di ULP </div></td>
     <td width="100"><div align="center" class="style3">Besaran Honor Per Paket </div></td>
-    <td width="100"><div align="center" class="style3">Pph 21 </div></td>
+    <td width="100"><div align="center" class="style3">PPh 21 </div></td>
     <td width="100"><div align="center" class="style3">Jumlah Yang Diterima </div></td>
-    <td colspan="2"><div align="center" class="style3">Tanda Tangan </div></td>
+    <td width="100"><div align="center" class="style3">Tanda Tangan </div></td>
   </tr>
+  @foreach ($pegawai as $d)
+  @foreach ($data as $da)
+    @if ($da == $d->id)
   <tr>
-    <td><div align="center" class="style4">1</div></td>
-    <td><div align="center" class="style4"></div></td>
+    <td><div align="center" class="style4">{{$loop->iteration}}</div></td>
+    <td><div align="center" class="style4">{{$d->nama}}</div></td>
     <td><div align="center" class="style4">{{$spj->tugas->pokja->namapokja}}</div></td>
     <td><div align="center" class="style4">Rp. {{number_format($honor)}}</div></td>
     <td><div align="center" class="style4">5% = Rp. {{number_format($pph)}}</div></td>
     <td><div align="center" class="style4">Rp. {{number_format($terima)}}</div></td>
-    <td width="100"><span class="style4">1 .................... </span></td>
-    <td width="100"><span class="style4"></span></td>
+    <td><span class="style4">{{$loop->iteration}} .................... </span></td>
   </tr>
-  <tr>
-    <td><div align="center" class="style4">2</div></td>
-    <td><div align="center" class="style4"></div></td>
-    <td><div align="center" class="style4">{{$spj->tugas->pokja->namapokja}}</div></td>
-    <td><div align="center" class="style4">Rp. {{number_format($honor)}}</div></td>
-    <td><div align="center" class="style4">5% = Rp. {{number_format($pph)}}</div></td>
-    <td><div align="center" class="style4">Rp. {{number_format($terima)}}</div></td>
-    <td><div align="center" class="style4"></div></td>
-    <td><span class="style4">2 ...................  </span></td>
-  </tr>
-  <tr>
-    <td><div align="center" class="style4">3</div></td>
-    <td><div align="center" class="style4"></div></td>
-    <td><div align="center" class="style4">{{$spj->tugas->pokja->namapokja}}</div></td>
-    <td><div align="center" class="style4">Rp. {{number_format($honor)}}</div></td>
-    <td><div align="center" class="style4">5% = Rp. {{number_format($pph)}}</div></td>
-    <td><div align="center" class="style4">Rp. {{number_format($terima)}}</div></td>
-    <td><span class="style4">3 .................... </span></td>
-    <td><span class="style4"></span></td>
-  </tr>
+  @endif 
+  @endforeach
+  @endforeach
+  
   <tr>
     <td colspan="3"><div align="center" class="style3">Jumlah</div></td>
     <td><div align="center" class="style4">Rp. {{number_format($jmlhonor)}}</div></td>
     <td><div align="center" class="style4">Rp. {{number_format($jmlpph)}}</div></td>
     <td><div align="center" class="style4">Rp. {{number_format($jmlterima)}}</div></td>
-    <td colspan="2"><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
   </tr>
 </table>
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -107,20 +92,32 @@
     <td width="100"><div align="center" class="style3">Pengguna Anggaran / Kuasa Pengguna Anggaran </div></td>
   </tr>
   <tr>
-    <td><span class="style4"></span>&nbsp;</td>
-    <td><span class="style4"></span>&nbsp;</td>
+    <td><span class="style3"></span>&nbsp;</td>
+    <td><span class="style3"></span>&nbsp;</td>
   </tr>
   <tr>
-    <td><span class="style4"></span>&nbsp;</td>
-    <td><span class="style4"></span>&nbsp;</td>
+    <td><span class="style3"></span>&nbsp;</td>
+    <td><span class="style3"></span>&nbsp;</td>
   </tr>
   <tr>
-    <td><div align="center"><span class="style3"><u>Desy Dwi Armiyanti, SH</u></span></div></td>
-    <td><div align="center"><span class="style3"><u>Rozihan Asward, SP</u></span></div></td>
+    <td><span class="style3"></span>&nbsp;</td>
+    <td><span class="style3"></span>&nbsp;</td>
   </tr>
   <tr>
-    <td><div align="center"><span class="style3">NIP. 19900925 201504 2 004</span></div></td>
-    <td><div align="center"><span class="style3">NIP. 1967125 199403 1 015</span></div></td>
+    @foreach ($pptk as $p)
+    <td><div align="center"><span class="style3"><u>{{$p->nama}}</u></span></div></td>
+    @endforeach
+    @foreach ($kepala as $k)
+    <td><div align="center"><span class="style3"><u>{{$k->nama}}</u></span></div></td>
+    @endforeach
+  </tr>
+  <tr>
+    @foreach ($pptk as $p)
+    <td><div align="center"><span class="style3">NIP. {{$p->nip}}</span></div></td>
+    @endforeach
+    @foreach ($kepala as $k)
+    <td><div align="center"><span class="style3">NIP. {{$k->nip}} </span></div></td>
+    @endforeach
   </tr>
 </table>
 </body>

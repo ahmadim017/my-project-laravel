@@ -145,4 +145,9 @@ class datapenyediaController extends Controller
         $datapenyedia = datapenyedia::findOrfail($id);
         return response()->download(storage_path('app/public/'. $datapenyedia->file));
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

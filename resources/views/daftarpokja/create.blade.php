@@ -40,6 +40,7 @@
             <option value=""></option>
             <option value="POKJA">POKJA</option>
             <option value="KEPALA UKPBJ">Kepala UKPBJ</option>
+            <option value="PPTK">PPTK</option>
           </select>
           <div class="invalid-feedbeck">{{$errors->first('role')}}</div>
           <br>

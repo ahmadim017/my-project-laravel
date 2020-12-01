@@ -116,7 +116,9 @@ class spjcontroller extends Controller
     public function cetak_pdf($id)
     {
         Date::setlocale('id');
-        $pegawai = daftarpokja::where('role','=','POKJA')->get();
+        $pegawai = daftarpokja::where('role','=','POKJA')->where('status','=','ACTIVE')->get();
+        $kepala = daftarpokja::where('role','=','KEPALA UKPBJ')->where('status','=','ACTIVE')->get();
+        $pptk = daftarpokja::where('role','=','PPTK')->where('status','=','ACTIVE')->get();
         $spj = spj::findOrfail($id);
         $tugas = $spj->id_tugas;
         $stugas = tugas::findOrfail($tugas);
@@ -124,13 +126,6 @@ class spjcontroller extends Controller
         $usul = $stugas->id_usulan;
         $daftarpokja = pokja::findOrfail($pokja);
         $data = json_decode($daftarpokja->id_user);
-        foreach ($pegawai as $p) {
-            foreach ($data as $da) {
-                if ($da == $p->id)  
-                $nama1 = $p->nama;     
-            }
-        }
-       
         $usulan = usulan::findOrfail($usul);
         if ($usulan->kategori === "Pekerjaan Konstruksi" || $usulan->kategori === "Pengadaan Barang" ){
             if ($usulan->pagu >= 200000000 && $usulan->pagu <= 500000000) {
@@ -167,7 +162,7 @@ class spjcontroller extends Controller
         $jmlhonor = $honor * 3;
         $jmlpph = $pph * 3;
         $jmlterima =  $terima * 3;
-        $pdf = PDF::loadview('spj.cetak',['spj' => $spj ,'pegawai' => $pegawai, 'data' => $data , 'honor' => $honor, 'pph' => $pph, 'terima' => $terima ,'jmlhonor' => $jmlhonor, 'jmlpph' => $jmlpph, 'jmlterima' => $jmlterima])->setPaper('a4', 'landscape');
+        $pdf = PDF::loadview('spj.cetak',['spj' => $spj ,'pegawai' => $pegawai, 'data' => $data , 'honor' => $honor, 'pph' => $pph, 'terima' => $terima ,'jmlhonor' => $jmlhonor, 'jmlpph' => $jmlpph, 'jmlterima' => $jmlterima, 'kepala' => $kepala, 'pptk' => $pptk])->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
 

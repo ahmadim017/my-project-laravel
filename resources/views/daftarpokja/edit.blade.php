@@ -41,6 +41,7 @@
             <option value=""></option>
             <option @if ($daftarpokja->role == "POKJA") selected @endif value="POKJA">POKJA</option>
             <option @if ($daftarpokja->role == "KEPALA UKPBJ") selected @endif value="KEPALA UKPBJ">Kepala UKPBJ</option>
+            <option @if ($daftarpokja->role == "PPTK") selected @endif value="PPTK">PPTK</option>
           </select>
           <div class="invalid-feedbeck">{{$errors->first('role')}}</div>
           <br>

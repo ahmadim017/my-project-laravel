@@ -71,6 +71,7 @@
       @endforeach
     </tbody>
   </table>
+  {{$daftarpokja->links()}}
     </div>
 </div>
 </div>

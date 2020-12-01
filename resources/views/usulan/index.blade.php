@@ -11,17 +11,22 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-12 text-right">
-    <a href="{{route('usulan.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-sm"></i>Tambah Usulan Lelang</a>
-    </div> 
-</div><br>
+  <div class="col-md-1 text-left">
+    <select name="tahun" class="form-control">
+      <option value="2020">2020</option>
+    </select>
+  </div>
+    <div class="col-md-11 text-right">
+        <a href="{{route('usulan.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-sm"></i>Tambah Usulan Lelang</a>
+    </div>
+</div>
+<br>
 
 <div class="card shadow mb-4">
     <!-- Card Header - Accordion -->
     <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
       <h6 class="m-0 font-weight-bold text-primary">Data Usulan Lelang</h6>
     </a>
-
     <!-- Card Content - Collapse -->
     <div class="collapse show" id="collapseCardExample">
       <div class="card-body">
