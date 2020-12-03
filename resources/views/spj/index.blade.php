@@ -10,21 +10,8 @@
 @endsection
 @section('content')
 <div class="row">
-    <div class="col-md-6">
-    <form action="{{route('spj.index')}}">
-    <div class="input-group mb-3">
-    <input value="{{Request::get('keyword')}}" type="text" class="form-control col-md-10" name="keyword" placeholder="Cari Group Pokja">
-      <div class="input-group-append">
-        <button type="submit"  class="btn btn-primary"><i class="fas fa-search fa-sm"></i></button>
-      </div>
-    </div>
-    </form>
-    </div>
-  </div>
-
-<div class="row">
     <div class="col-md-12 text-right">
-    <a href="{{route('spj.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-fw fa-sm"></i>Tambah</a>
+    <a href="{{route('spj.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-fw fa-sm"></i>Tambah SPJ</a>
     </div> 
 </div><br>
 

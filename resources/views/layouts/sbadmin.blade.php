@@ -82,7 +82,11 @@
       </li>
       @endif
       <!-- Nav Item - Utilities Collapse Menu -->
-     
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('spj.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>SPJ</span></a>
+        </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -105,7 +109,7 @@
         </div>
       </li>
       <!-- Heading -->
-
+      
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Laporan
@@ -142,12 +146,6 @@
         </div>
       </li>
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
-      <a class="nav-link" href="{{route('spj.index')}}">
-          <i class="fas fa-fw fa-table"></i>
-          <span>SPJ</span></a>
-      </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

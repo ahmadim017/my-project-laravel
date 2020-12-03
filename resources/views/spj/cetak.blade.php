@@ -23,11 +23,11 @@
 <p align="center" class="style1"><strong>Bagian Pengadaan Barang dan Jasa </strong></p>
 <p class="style3">No. Rek. 4.00.01.01.15.46.5.2.1.01.01</p>
 <p class="style3">Kegiatan : Unit Layanan Pengadaan (ULP) Pemkab. PPU</p>
-<table width="100%" border="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="1">
   <tr>
-    <td width="225"><span class="style3">Nama Paket Pekerjaan</span></td>
-    <td width="10">:</td>
-    <td width="805"><span class="style3">{{$spj->tugas->usulan->namapaket}}</span></td>
+    <td width="145"><span class="style3">Nama Paket Pekerjaan</span></td>
+    <td width="5">:</td>
+    <td ><span class="style3">{{$spj->tugas->usulan->namapaket}}</span></td>
   </tr>
   <tr>
     <td><span class="style3">Pagu Pekerjaan</span></td>
