@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Excel;
+use Carbon;
 use App\Exports\penyediaExport;
 use App\Exports\perubahanExport;
 class laporanlpseController extends Controller
@@ -25,11 +26,11 @@ class laporanlpseController extends Controller
             "date1" => "required",
             "date2" => "required"
         ])->validated();
-
+        $tanggal = Carbon\Carbon::now();
         $date1 = $request->get('date1');
         $date2 = $request->get('date2');
         //dd($opd);
-        return Excel::download(new penyediaExport ($date1,$date2), 'daftarpenyedia.xlsx');
+        return Excel::download(new penyediaExport ($date1,$date2), $tanggal. 'daftarpenyedia.xlsx');
     }
 
     public function export_perubahanexcel(Request $request)
@@ -38,11 +39,11 @@ class laporanlpseController extends Controller
             "date1" => "required",
             "date2" => "required"
         ])->validated();
-
+        $tanggal = Carbon\Carbon::now();
         $date1 = $request->get('date1');
         $date2 = $request->get('date2');
         //dd($opd);
-        return Excel::download(new perubahanExport ($date1,$date2), 'perubahanpenyedia.xlsx');
+        return Excel::download(new perubahanExport ($date1,$date2), $tanggal. 'perubahanpenyedia.xlsx');
     }
     
     public function __construct()

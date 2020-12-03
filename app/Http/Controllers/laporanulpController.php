@@ -9,6 +9,7 @@ use App\Exports\usulanExport;
 use App\Exports\prosesExport;
 use App\Exports\hasilExport;
 use Excel;
+use Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class laporanulpController extends Controller
@@ -37,13 +38,13 @@ class laporanulpController extends Controller
             "date1" => "required",
             "date2" => "required"
         ])->validated();
-
+        $tanggal = Carbon\Carbon::now();
         $opd = $request->get('opd');
         $kategori = $request->get('kategori');
         $date1 = $request->get('date1');
         $date2 = $request->get('date2');
         //dd($opd);
-        return Excel::download(new usulanExport($opd,$kategori,$date1,$date2), 'usulan.xlsx');
+        return Excel::download(new usulanExport($opd,$kategori,$date1,$date2), $tanggal. 'usulan.xlsx');
     }
 
     public function export_prosesexcel(Request $request)
@@ -52,12 +53,13 @@ class laporanulpController extends Controller
             "date1" => "required",
             "date2" => "required"
         ])->validated();
+        $tanggal = Carbon\Carbon::now();
 
         $opd = $request->get('opd');
         $date1 = $request->get('date1');
         $date2 = $request->get('date2');
         //dd($opd);
-        return Excel::download(new prosesExport ($opd,$date1,$date2), 'proseslelang.xlsx');
+        return Excel::download(new prosesExport ($opd,$date1,$date2), $tanggal. 'proseslelang.xlsx');
     }
 
     public function export_hasilexcel(Request $request)
@@ -66,11 +68,12 @@ class laporanulpController extends Controller
             "date1" => "required",
             "date2" => "required"
         ])->validated();
+        $tanggal = Carbon\Carbon::now();
 
         $date1 = $request->get('date1');
         $date2 = $request->get('date2');
         //dd($opd);
-        return Excel::download(new hasilExport ($date1,$date2), 'hasillelang.xlsx');
+        return Excel::download(new hasilExport ($date1,$date2), $tanggal. 'hasillelang.xlsx');
     }
     
     public function __construct()
