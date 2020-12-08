@@ -18,7 +18,6 @@ class PerbaikanUser extends Migration
         $table->enum("roles",["ADMIN","USER","AUDITOR"]);
         $table->text("alamat");
         $table->string("telpon");
-        $table->String("avatar");
         $table->enum("status",["ACTIVE","INACTIVE"]);
         });
     }
@@ -35,7 +34,6 @@ class PerbaikanUser extends Migration
             $table->dropColumn("roles");
             $table->dropColumn("alamat");
             $table->dropColumn("telpon");
-            $table->dropColumn("avatar");
             $table->dropColumn("status");
         });
     }

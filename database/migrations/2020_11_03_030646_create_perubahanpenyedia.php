@@ -22,6 +22,7 @@ class CreatePerubahanpenyedia extends Migration
             $table->string('npwp');
             $table->string('email');
             $table->string('file');
+            $table->string('nama_file');
             $table->text('keterangan');
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();

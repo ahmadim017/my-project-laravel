@@ -80,14 +80,6 @@ class profilController extends Controller
         $profil->name = $request->get('name');
         $profil->telpon = $request->get('telpon');
         $profil->alamat = $request->get('alamat');
-        if ($request->file('avatar')) {
-
-            if ($profil->avatar && file_exists(storage_path('app/public/'.$profil->avatar))){
-                Storage::delete('public/'.$profil->avatar);
-            }
-            $file = $request->file('avatar')->store('avatar','public');
-            $profil->avatar = $file;
-        }
         $profil->save();
         return redirect()->back()->with('status','Data Berhasil diupdate');
     }

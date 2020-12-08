@@ -22,6 +22,7 @@ class CreatePenyediabaru extends Migration
             $table->string('email');
             $table->string('telp');
             $table->string('file');
+            $table->string('nama_file');
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
             $table->timestamps();
