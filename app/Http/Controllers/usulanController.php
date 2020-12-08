@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Jenssegers\Date\Date;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon;
 class usulanController extends Controller
 {
     /**
@@ -18,10 +18,14 @@ class usulanController extends Controller
     public function index(Request $request)
     {   
         Date::setlocale('id');
+        //$ta = \App\tahunanggaran::all();
+        $tahun = Carbon\Carbon::now()->format('Y');
         $usulan = \App\usulan::orderBy('id','DESC')->get();
-        //$keyword = $request->get('keyword');
-        //if ($keyword) {
-          //  $usulan = \App\usulan::where('namapaket','LIKE',"%$keyword%")->get();
+        //$stahun = $request->get('ta');
+        //if ($stahun) {
+          //  $usulan = \App\usulan::where('ta','like',"%$stahun%")->get();
+        //} else {
+        //    $usulan = \App\usulan::where('ta','like',"%$tahun%")->orderBy('id','DESC')->get();
         //}
         return view('usulan.index',['usulan' => $usulan]);
     }

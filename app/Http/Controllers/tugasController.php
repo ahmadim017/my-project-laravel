@@ -22,7 +22,6 @@ class tugasController extends Controller
         $tugas = \App\tugas::with('usulan')->whereHas('usulan', function($q) use($keyword){
             $q->where('namapaket','LIKE','%' .$keyword. '%');
         })->orderBy('id','DESC')->get();
-        //return response()->json(['data' => $tugas]);
         return view('stugas.index',['tugas' => $tugas]);
     }
 
@@ -35,7 +34,6 @@ class tugasController extends Controller
     public function lpaket(Request $request)
     {
         $keyword = $request->get('keyword');
-        //$ta = $request->get('tahunanggaran');
         $opd = \App\opd::all();
         $tahunanggaran = \App\tahunanggaran::all();
         $usulan = \App\usulan::where('namapaket','LIKE',"%$keyword%")->paginate(10);

@@ -37,10 +37,7 @@
             <input type="radio" name="roles" id="AUDITOR" value="AUDITOR" {{$user->roles == "AUDITOR" ? "checked" : ""}}>
             <label for="form-radio-label" for="AUDITOR">Auditor</label>
         </div>
-        <div class="form-radio form-radio-inline">
-            <input type="radio" name="roles" id="POKJA" value="POKJA" {{$user->roles == "POKJA" ? "checked" : ""}}>
-            <label for="form-radio-label" for="AUDITOR">Pokja</label>
-        </div><br>
+        <br>
         <label for="">Status</label>
         <br>
         <div class="form-radio form-radio-inline">
@@ -56,17 +53,6 @@
         <br>
         <label for="alamat">Alamat</label>
         <textarea name="alamat" id="alamat" class="form-control {{$errors->first('alamat') ? "IS-INVALID" : ""}}">{{$user->alamat}}</textarea><br>
-        <label for="">Avatar</label>
-        <br>
-        Current image :
-        <br>
-        @if ($user->avatar) <img src="{{asset('storage/App/public/'.$user->avatar)}}" width="120px"><br><br>
-        @else
-        No Image 
-        @endif
-        <input type="file" class="form-control" name="avatar">
-        <small class="text-muted">* kosongkan  jika tidak ingin mengubah avatar</small>
-        <br>
         <button type="submit" class="btn btn-primary btn-sm" value="Simpan"><i class="fa fa-save fa-sm"></i> Simpan</button>
         <a href="{{route('users.index')}}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-circle-left fa-fw fa-sm"></i>Kembali</a>
         </form>

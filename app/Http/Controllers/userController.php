@@ -60,10 +60,6 @@ class userController extends Controller
         $user->password = \Hash::make($request->get('password'));
         $user->roles = $request->get('roles');
 
-        if ($request->file('avatar')) {
-            $file = $request->file('avatar')->store('avatar','public');
-            $user->avatar = $file;
-        }
         $user->save();
 
         return redirect()->route('users.create')->with('status','Data Berhasil di Simpan');
@@ -115,14 +111,6 @@ class userController extends Controller
         $user->telpon = $request->get('telpon');
         $user->status = $request->get('status');
         $user->roles = $request->get('roles');
-        if ($request->file('avatar')) {
-
-            if ($user->avatar && file_exists(storage_path('app/public/'.$user->avatar))){
-                \Storage::delete('public/'.$user->avatar);
-            }
-            $file = $request->file('avatar')->store('avatar','public');
-            $user->avatar = $file;
-        }
         $user->save();
         return redirect()->route('users.edit',[$id])->with('status','Data Berhasil Dirubah');
     }

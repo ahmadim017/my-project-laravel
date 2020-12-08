@@ -11,12 +11,7 @@
 @section('content')
 
 <div class="row">
-  <div class="col-md-1 text-left">
-    <select name="tahun" class="form-control">
-      <option value="2020">2020</option>
-    </select>
-  </div>
-    <div class="col-md-11 text-right">
+    <div class="col-md-12 text-right">
         <a href="{{route('usulan.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-sm"></i>Tambah Usulan Lelang</a>
     </div>
 </div>

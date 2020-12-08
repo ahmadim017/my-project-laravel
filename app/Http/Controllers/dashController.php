@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon;
 class dashController extends Controller
 {
     /**
@@ -12,51 +13,106 @@ class dashController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $usulan = DB::table('usulan')->select(DB::raw('count(*) as total, kategori'))
-        ->where('kategori','<>',1)->groupBy('kategori')->get();
-        $data = [];
+        $ta = \App\tahunanggaran::all();
+        $tahun = Carbon\Carbon::now()->format('Y');
+        $stahun = $request->get('ta');
+        if ($stahun) {
+                $usulan = DB::table('usulan')->select(DB::raw('count(*) as total, kategori'))
+                ->where('kategori','<>',1)->where('ta','LIKE',"%$stahun%")->groupBy('kategori')->get();
+                $data = [];
 
-        foreach ($usulan as $u) {
-            $data[] = [$u->kategori,$u->total];
-        }
+                foreach ($usulan as $u) {
+                    $data[] = [$u->kategori,$u->total];
+                }
 
-        $dana = DB::table('usulan')->select(DB::raw('count(*) as totaldana, sumberdana'))
-        ->where('sumberdana','<>',1)->groupBy('sumberdana')->get();
-        $datadana = [];
-
-        foreach ($dana as $d){
-            $datadana[] = [$d->sumberdana,$d->totaldana];
-        }
+                $dana = DB::table('usulan')->select(DB::raw('count(*) as totaldana, sumberdana'))
+                ->where('sumberdana','<>',1)->where('ta','LIKE',"%$stahun%")->groupBy('sumberdana')->get();
+                $datadana = [];
         
-        $opd = DB::table('usulan')->leftJoin('opd','usulan.id_opd','=','opd.id')
-        ->select('opd.opd', DB::raw('count(*) as total, opd') ,DB::raw('SUM(pagu) as totalpagu'),DB::raw('SUM(hps) as totalhps'))
-        ->groupBy('opd.opd')->get();
-        $dataopd = [];
-        $total = [];
-        $totalpagu = [];
-        $totalhps = [];
-        foreach ($opd as $o) {
-           $dataopd[] = $o->opd;
-           $total[] = $o->total;
-           $totalpagu[] = $o->totalpagu;
-           $totalhps[] = $o->totalhps;
+                foreach ($dana as $d){
+                    $datadana[] = [$d->sumberdana,$d->totaldana];
+                }
+
+                $opd = DB::table('usulan')->leftJoin('opd','usulan.id_opd','=','opd.id')
+                ->select('opd.opd', DB::raw('count(*) as total, opd') ,DB::raw('SUM(pagu) as totalpagu'),DB::raw('SUM(hps) as totalhps'))
+                ->where('ta','LIKE',"%$stahun%")
+                ->groupBy('opd.opd')->get();
+                $dataopd = [];
+                $total = [];
+                $totalpagu = [];
+                $totalhps = [];
+                foreach ($opd as $o) {
+                $dataopd[] = $o->opd;
+                $total[] = $o->total;
+                $totalpagu[] = $o->totalpagu;
+                $totalhps[] = $o->totalhps;
+                }
+
+                $kategori = DB::table('usulan')->select('kategori', DB::raw('SUM(pagu) as pagu'))
+                ->where('ta','LIKE',"%$stahun%")
+                ->groupBy('kategori')->get();
+                $datakategori = [];
+                $pagu = [];
+                foreach ($kategori as $k) {
+                    $datakategori[] = $k->kategori;
+                    $pagu[] = $k->pagu;
+                }
+                //dd($datakategori);
+                $usulan1 = \App\usulan::where('ta','LIKE',"%$stahun%")->count();
+                $tugas = \App\tugas::whereYear('created_at','LIKE',"%$stahun%")->count();
+                $hasil = \App\hasillelang::whereYear('created_at','LIKE',"%$stahun%")->count();
+
+        } else {
+            $usulan = DB::table('usulan')->select(DB::raw('count(*) as total, kategori'))
+            ->where('kategori','<>',1)->where('ta','LIKE',"%$tahun%")->groupBy('kategori')->get();
+            $data = [];
+
+            foreach ($usulan as $u) {
+                $data[] = [$u->kategori,$u->total];
+            }
+
+            $dana = DB::table('usulan')->select(DB::raw('count(*) as totaldana, sumberdana'))
+            ->where('sumberdana','<>',1)->where('ta','LIKE',"%$tahun%")->groupBy('sumberdana')->get();
+            $datadana = [];
+    
+            foreach ($dana as $d){
+                $datadana[] = [$d->sumberdana,$d->totaldana];
+            }
+
+            $opd = DB::table('usulan')->leftJoin('opd','usulan.id_opd','=','opd.id')
+            ->select('opd.opd', DB::raw('count(*) as total, opd') ,DB::raw('SUM(pagu) as totalpagu'),DB::raw('SUM(hps) as totalhps'))
+            ->where('ta','LIKE',"%$tahun%")
+            ->groupBy('opd.opd')->get();
+            $dataopd = [];
+            $total = [];
+            $totalpagu = [];
+            $totalhps = [];
+            foreach ($opd as $o) {
+            $dataopd[] = $o->opd;
+            $total[] = $o->total;
+            $totalpagu[] = $o->totalpagu;
+            $totalhps[] = $o->totalhps;
+            }
+
+            $kategori = DB::table('usulan')->select('kategori', DB::raw('SUM(pagu) as pagu'))
+            ->where('ta','LIKE',"%$tahun%")
+            ->groupBy('kategori')->get();
+            $datakategori = [];
+            $pagu = [];
+            foreach ($kategori as $k) {
+                $datakategori[] = $k->kategori;
+                $pagu[] = $k->pagu;
+            }
+            //dd($datakategori);
+            $usulan1 = \App\usulan::where('ta','LIKE',"%$tahun%")->count();
+            $tugas = \App\tugas::whereYear('created_at','LIKE',"%$tahun%")->count();
+            $hasil = \App\hasillelang::whereYear('created_at','LIKE',"%$tahun%")->count();
         }
 
-        $kategori = DB::table('usulan')->select('kategori', DB::raw('SUM(pagu) as pagu'))
-        ->groupBy('kategori')->get();
-        $datakategori = [];
-        $pagu = [];
-        foreach ($kategori as $k) {
-            $datakategori[] = $k->kategori;
-            $pagu[] = $k->pagu;
-        }
-        //dd($datakategori);
-        $usulan1 = \App\usulan::count();
-        $tugas = \App\tugas::count();
-        $hasil = \App\hasillelang::count();
-        return view('dashboard.dash',['pagu' => $pagu,'totalhps' => $totalhps,'totalpagu' => $totalpagu,'tugas' => $tugas,'hasil' => $hasil,'usulan1'=> $usulan1,'data' => $data,'datadana' => $datadana,'dataopd' => $dataopd,'total' => $total,'datakategori' => $datakategori]);
+        
+        return view('dashboard.dash',['tahun' => $tahun,'stahun' => $stahun,'ta' => $ta,'pagu' => $pagu,'totalhps' => $totalhps,'totalpagu' => $totalpagu,'tugas' => $tugas,'hasil' => $hasil,'usulan1'=> $usulan1,'data' => $data,'datadana' => $datadana,'dataopd' => $dataopd,'total' => $total,'datakategori' => $datakategori]);
     }
 
     /**

@@ -4,12 +4,6 @@
 @section('content')
 <div class="card border-left-primary shadow h-100 py-2">
     <div class="card-body box-profile">
-      <div class="text-center">
-        <img class="img-profile rounded-circle"
-             src="{{asset('storage/app/public/'.$user->avatar)}}"
-             alt="User profile picture" width="120px">
-      </div><br>
-
       <h3 class="profile-username text-center">{{$user->name}}</h3>
 
       <p class="text-muted text-center">{{$user->email}}</p>

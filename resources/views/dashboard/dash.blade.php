@@ -3,6 +3,18 @@
 @section('content')
 
   <div class="row">
+    <div class="col-md-1 text-left">
+      <form action="{{route('dashboard.dash')}}">
+        <select name="ta" class="form-control" onchange="this.form.submit()">
+          
+          @foreach ($ta as $ta)
+          <option @if ($ta->tahunanggaran === $stahun || $ta->tahunanggaran === $tahun ) selected @endif value="{{$ta->tahunanggaran}}">{{$ta->tahunanggaran}}</option>
+          @endforeach
+        </select>
+      </form>
+      </div>
+  </div><br>
+  <div class="row">
     <div class="col-xl-4 col-md-6 mb-4">
       <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
