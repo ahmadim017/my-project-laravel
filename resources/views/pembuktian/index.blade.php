@@ -12,7 +12,7 @@
 
   <div class="row">
     <div class="col-md-12 text-right">
-    <a href="{{route('pembuktian.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-sm"></i> Tambah BA Pembuktian</a>
+    <a href="{{route('pembuktian.create')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm"><i class="fa fa-plus-circle fa-sm text-white-50"></i> Tambah BA Pembuktian</a>
     </div> 
 </div><br>
 
@@ -47,9 +47,6 @@
         <th scope="col">Nama Pekerjaan</th>
         <th scope="col">Pokja</th>
         <th scope="col">Tahun Anggaran</th>
-        @if (Auth::user()->roles == "ADMIN")
-        <th scope="col">Aksi</th>
-        @endif
       </tr>
     </thead>
     <tbody>
@@ -67,16 +64,6 @@
           <td>
             {{$pb->tugas->usulan->ta}}
           </td>
-          @if (Auth::user()->roles == "ADMIN")
-          <td><a href="{{route('pembuktian.edit',[$pb->id])}}" class="btn btn-primary btn-sm">Edit</a> 
-          <form onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus?')" action="{{route('pembuktian.destroy',[$pb->id])}}" class="d-inline" method="POST">
-          @csrf
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="Delete" class="btn btn-danger btn-sm">
-          </form>
-          </form>
-          </td>
-          @endif
           @endforeach
     </tr> 
        

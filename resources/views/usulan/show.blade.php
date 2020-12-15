@@ -67,6 +67,14 @@
   </tr>
 </table>
 </div>
+@if (Auth::user()->roles == "ADMIN")
+<a href="{{route('usulan.edit',[$usulan->id])}}" class="btn btn-primary btn-sm">Edit</a> 
+              <form onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus?')" action="{{route('usulan.destroy',[$usulan->id])}}" class="d-inline" method="POST">
+              @csrf
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+              </form>
+@endif
 <a href="{{route('usulan.index')}}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-circle-left fa-fw fa-sm"></i>Kembali</a>
         </div>
       </div>

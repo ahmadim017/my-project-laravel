@@ -79,6 +79,15 @@
     </tr>
 </table>
 <a href="{{route('hasillelang.cetak_pdf',[$hasillelang->id])}}" class="btn btn-info btn-sm" target="_blank"><i class="far fa-file-alt fa-fw fa-sm"></i>Cetak</a>
+@if (Auth::user()->roles == "ADMIN")
+      <a href="{{route('hasillelang.edit',[$hasillelang->id])}}" class="btn btn-primary btn-sm">Edit</a> 
+      <form onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus?')" action="{{route('hasillelang.destroy',[$hasillelang->id])}}" class="d-inline" method="POST">
+          @csrf
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+          </form>
+          </form>
+          @endif
 <a href="{{route('hasillelang.index')}}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-circle-left fa-fw fa-sm"></i>Kembali</a>
           </div>
         </div>

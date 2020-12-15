@@ -62,9 +62,17 @@
     <td><strong>{{$tugas->pokja->namapokja}}</strong></td>
     </tr>
 </table>
-            </div>
-<a href="{{route('stugas.cetak_pdf',[$tugas->id])}}" class="btn btn-info btn-sm" target="_blank"><i class="far fa-file-alt fa-fw fa-sm"></i>Cetak</a>
-<a href="{{route('stugas.index')}}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-circle-left fa-fw fa-sm"></i>Kembali</a>
+</div>
+            <a href="{{route('stugas.cetak_pdf',[$tugas->id])}}" class="btn btn-info btn-sm" target="_blank"><i class="far fa-file-alt fa-fw fa-sm"></i>Cetak</a>
+            @if (Auth::user()->roles == "ADMIN")
+            <a href="{{route('stugas.edit',[$tugas->id])}}" class="btn btn-primary btn-sm">Edit</a> 
+            <form onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus?')" action="{{route('stugas.destroy',[$tugas->id])}}" class="d-inline" method="POST">
+            @csrf
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+            </form>
+            @endif
+            <a href="{{route('stugas.index')}}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-circle-left fa-fw fa-sm"></i>Kembali</a>
           </div>
         </div>
     

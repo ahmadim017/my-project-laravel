@@ -14,7 +14,7 @@
 
   <div class="row">
     <div class="col-md-12 text-right">
-    <a href="{{route('hasillelang.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-fw fa-sm"></i>Buat Hasil Lelang</a>
+    <a href="{{route('hasillelang.create')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm"><i class="fa fa-plus-circle fa-fw fa-sm text-white-50"></i>Buat Hasil Lelang</a>
     </div> 
 </div><br>
 
@@ -49,9 +49,6 @@
         <th scope="col">Nama Pekerjaan</th>
         <th scope="col">Sumber Dana</th>
         <th scope="col">Tahun Anggaran</th>
-        @if (Auth::user()->roles == "ADMIN")
-        <th scope="col">Aksi</th>
-        @endif
       </tr>
     </thead>
     <tbody>
@@ -69,16 +66,6 @@
           <td>
             {{$hl->tugas->usulan->ta}}
         </td>
-        @if (Auth::user()->roles == "ADMIN")
-      <td><a href="{{route('hasillelang.edit',[$hl->id])}}" class="btn btn-primary btn-sm">Edit</a> 
-      <form onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus?')" action="{{route('hasillelang.destroy',[$hl->id])}}" class="d-inline" method="POST">
-          @csrf
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="Delete" class="btn btn-danger btn-sm">
-          </form>
-          </form>
-          </td>
-          @endif
     </tr> 
        @endforeach
         

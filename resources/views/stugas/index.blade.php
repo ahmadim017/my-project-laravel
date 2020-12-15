@@ -24,7 +24,7 @@
 
   <div class="row">
     <div class="col-md-12 text-right">
-    <a href="{{route('stugas.lpaket')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-sm"></i> Buat Paket</a>
+    <a href="{{route('stugas.lpaket')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm"><i class="fa fa-plus-circle fa-sm text-white-50"></i> Buat Paket</a>
     </div> 
 </div><br>
 
@@ -60,9 +60,6 @@
         <th scope="col">Nama Pekerjaan</th>
         <th scope="col">Pokja</th>
         <th scope="col">Tahun Anggaran</th>
-        @if (Auth::user()->roles == "ADMIN")
-        <th scope="col">Aksi</th>
-        @endif
       </tr>
     </thead>
     <tbody>
@@ -83,16 +80,6 @@
           <td>
             {{$t->usulan->ta}}
           </td>
-          @if (Auth::user()->roles == "ADMIN")
-          <td><a href="{{route('stugas.edit',[$t->id])}}" class="btn btn-primary btn-sm">Edit</a> 
-          <form onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus?')" action="{{route('stugas.destroy',[$t->id])}}" class="d-inline" method="POST">
-          @csrf
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="Delete" class="btn btn-danger btn-sm">
-
-          </form>
-          </td>
-          @endif
     </tr> 
         @endforeach
       

@@ -16,7 +16,7 @@
 
 <div class="row">
     <div class="col-md-12 text-right">
-    <a href="{{route('pokja.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-fw fa-sm"></i>Tambah Pokja</a>
+    <a href="{{route('pokja.create')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm"><i class="fa fa-plus-circle fa-fw fa-sm text-white-50"></i>Tambah Pokja</a>
     </div> 
 </div><br>
 

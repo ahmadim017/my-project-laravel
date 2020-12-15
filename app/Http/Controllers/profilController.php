@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 class profilController extends Controller
 {
     /**
@@ -83,6 +85,8 @@ class profilController extends Controller
         $profil->save();
         return redirect()->back()->with('status','Data Berhasil diupdate');
     }
+   
+
 
     /**
      * Remove the specified resource from storage.

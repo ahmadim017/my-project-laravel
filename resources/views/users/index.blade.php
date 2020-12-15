@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-12 text-right">
-    <a href="{{route('users.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-sm"></i>Tambah User</a>
+    <a href="{{route('users.create')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm"><i class="fa fa-plus-circle fa-sm text-white-50"></i> Tambah User</a>
     </div> 
 </div><br>
 

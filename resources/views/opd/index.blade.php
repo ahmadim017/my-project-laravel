@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-12 text-right">
-    <a href="{{route('opd.create')}}" class="btn btn-info btn-sm"><i class="fa fa-plus-circle fa-sm"></i>Tambah Dinas</a>
+    <a href="{{route('opd.create')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm"><i class="fa fa-plus-circle fa-sm text-white-50"></i> Tambah Dinas</a>
     </div> 
 </div><br>
 
